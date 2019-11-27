@@ -1,5 +1,7 @@
 package demo.com.quanlyphongtro;
 
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,6 +17,7 @@ import com.service.ApiClient;
 import com.service.BannerService;
 import com.service.MotelService;
 
+import java.io.InputStream;
 import java.util.List;
 
 import retrofit2.Call;
@@ -55,6 +58,15 @@ private ListView listViewMotel;
                 Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private class HtpRequestAsk extends AsyncTask<Void,Void,List<Motel>>{
+
+        @Override
+        protected List<Motel> doInBackground(Void... params) {
+
+            return  null;
+        }
     }
 
 

@@ -9,12 +9,15 @@ import java.util.List;
 import retrofit2.Call;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 
 public interface MotelService {
     @GET("motel/findall")
     Call<List<Motel>> findAllMotel1();
 
+    @GET("motel/get/{name}")
+    Call<byte[]> getImage(@Path("name") String name);
    /* @POST("invoice/create")
     Call<Invoice> create(@Body Invoice invoice);
 
