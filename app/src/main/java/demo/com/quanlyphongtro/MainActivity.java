@@ -1,10 +1,13 @@
 package demo.com.quanlyphongtro;
 
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -28,6 +31,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
 private ListView listViewMotel;
+private Button buttonLogin;
     //private GridView gridViewMotel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,13 @@ private ListView listViewMotel;
 
     private void initView(){
         listViewMotel=findViewById(R.id.listViewMotel);
-
+        buttonLogin=findViewById(R.id.buttonLogin);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Login_onClick(v);
+            }
+        });
     }
     private void loadData(){
         MotelService motelService=ApiClient.getClient().create(MotelService.class);
@@ -68,6 +78,10 @@ private ListView listViewMotel;
             return  null;
         }
     }
+    public void Login_onClick(View v) {
+        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
 
+        startActivity(intent);
+    }
 
 }
