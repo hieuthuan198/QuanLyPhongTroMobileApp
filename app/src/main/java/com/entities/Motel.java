@@ -19,7 +19,7 @@ public class Motel implements Serializable {
     private String email;
     @SerializedName("describe")
     private String describe;
-    @SerializedName("phonenumber")
+    @SerializedName("phoneNumber")
     private String phoneNumber;
     @SerializedName("image1")
     private String image1;
@@ -29,6 +29,9 @@ public class Motel implements Serializable {
     private String image3;
     @SerializedName("image4")
     private String image4;
+
+    @SerializedName("type")
+    private String type;
     @SerializedName("account_id")
     private Account account;
     @SerializedName("status")
@@ -37,7 +40,7 @@ public class Motel implements Serializable {
     public Motel() {
     }
 
-    public Motel(Integer id, String name, double price, String address, String email, String describe, String phoneNumber, String image1, String image2, String image3, String image4, Account account, boolean status) {
+    public Motel(Integer id, String name, double price, String address, String email, String describe, String phoneNumber, String image1, String image2, String image3, String image4,String type, Account account, boolean status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -49,6 +52,7 @@ public class Motel implements Serializable {
         this.image2 = image2;
         this.image3 = image3;
         this.image4 = image4;
+        this.type=type;
         this.account = account;
         this.status = status;
     }
@@ -155,5 +159,13 @@ public class Motel implements Serializable {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

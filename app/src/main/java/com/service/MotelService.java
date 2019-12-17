@@ -8,7 +8,9 @@ import java.util.List;
 
 import retrofit2.Call;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 
@@ -18,6 +20,12 @@ public interface MotelService {
 
     @GET("motel/get/{name}")
     Call<byte[]> getImage(@Path("name") String name);
+
+    @GET("motel/findbyusername/{username}")
+    Call<List<Motel>> findByUsername(@Path("username")String username);
+
+    @PUT("motel/update")
+    Call<Motel> update(@Body Motel motel);
    /* @POST("invoice/create")
     Call<Invoice> create(@Body Invoice invoice);
 

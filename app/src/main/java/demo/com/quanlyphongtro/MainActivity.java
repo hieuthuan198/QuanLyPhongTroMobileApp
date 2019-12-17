@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -50,10 +51,28 @@ private Button buttonLogin;
                 Login_onClick(v);
             }
         });
+        listViewMotel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                listViewContact_onItemClick(parent, view, position, id);
+            }
+        });
     }
+    private void listViewContact_onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Motel motel = (Motel) parent.getItemAtPosition(position);
+
+        Intent intent = new Intent(MainActivity.this, MotelDetailActivity.class);
+        intent.putExtra("motel", motel);
+        startActivity(intent);
+
+    }
+
+
+
     private void loadData(){
         MotelService motelService=ApiClient.getClient().create(MotelService.class);
-        motelService.findAllMotel1().enqueue(new Callback<List<Motel>>()
+       motelService.findAllMotel1().enqueue(new Callback<List<Motel>>()
+       // motelService.findByUsername("Teo").enqueue(new Callback<List<Motel>>()
         {
             @Override
             public void onResponse(Call<List<Motel>> call, Response<List<Motel>> response) {

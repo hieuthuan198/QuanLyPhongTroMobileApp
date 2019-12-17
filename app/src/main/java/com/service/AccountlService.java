@@ -15,6 +15,8 @@ public interface AccountlService {
     @GET("account/checkaccount/{username}/{password}")
     Call<List<Account>> checkaccount(@Path("username") String username,@Path("password") String password);
 
+    @GET("account/login/{username}/{password}")
+    Call<Account> login(@Path("username") String username,@Path("password") String password);
 
    /* @POST("invoice/create")
     Call<Invoice> create(@Body Invoice invoice);

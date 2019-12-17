@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    public void buttonLogin_onClick(View v) {
+   /* public void buttonLogin_onClick(View v) {
         AccountlService accountlService=ApiClient.getClient().create(AccountlService.class);
 
         try {
@@ -79,7 +79,41 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),getString(R.string.fail)+":"+ e.getMessage(),Toast.LENGTH_LONG).show();
         }
     }
+*/
+   public void buttonLogin_onClick(View v) {
+       AccountlService accountlService=ApiClient.getClient().create(AccountlService.class);
 
+       try {
+           final String username=ediTtextUserName.getText().toString();
+           final String password=ediTtextPassword.getText().toString();
+
+
+           accountlService.login(username,password).enqueue(new Callback<Account>() {
+
+               @Override
+               public void onResponse(Call<Account> call, Response<Account> response) {
+                   if(response.isSuccessful()){
+
+                       Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+
+                       startActivity(intent);
+                       // list product co duoc tu goi api
+                       //  List<Account> products = response.body();
+                       // listViewInvoice.setAdapter(new InvoiceListAdapter(getApplicationContext(), R.layout.invoice_custom_layout, products));
+                   }
+               }
+
+               @Override
+               public void onFailure(Call<Account> call, Throwable t) {
+
+                   Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                   textViewError.setText(String.valueOf(t.getMessage()));
+               }
+           });
+       }catch (Exception e){
+           Toast.makeText(getApplicationContext(),getString(R.string.fail)+":"+ e.getMessage(),Toast.LENGTH_LONG).show();
+       }
+   }
 
 
 }
